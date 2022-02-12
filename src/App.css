@@ -1,0 +1,22 @@
+
+.app__header {
+    background-image: url("https://vocalmogul.com/wp-content/uploads/2016/05/book_Pages.jpg");
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.books-wrapper {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    justify-content: center;
+    gap: 20px
+}
+
+.search-svg::before {
+    content: '123';
+    top: 0;
+    right: 50px;
+}
