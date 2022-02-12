@@ -1,38 +1,43 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 export interface BooksState {
   apiKey: string
-  books: Object
+  books: Object | undefined
+  totalItems: number
+  maxSearchBooks: number
+  searchBook: string | null
+  sorting: string
+}
+
+export interface fetchBooksType {
+  searchBook: string
+  apiKey: string
+  maxSearchBooks: number
 }
 
 const initialState: BooksState = {
   apiKey: 'AIzaSyCU-r6vMR6xbtjFh62--mpRcDNYfALMZJ4',
-  books: []
+  books: [],
+  totalItems: 0,
+  maxSearchBooks: 28,
+  searchBook: null,
+  sorting: 'relevance',
 };
 
-// export const incrementAsync = createAsyncThunk(
-//   'booksStore/fetch',
-// async (amount: number) => {
-  // const response = await fetchCount(amount);
-  // return response.data;
-  // }
-// );
-
-  export const bookSlice = createSlice({
-    name: 'booksStore',
-    initialState,
-    reducers: {
-      // builder
-      //   .addCase(incrementAsync.pending, (state) => {
-      //     state.status = 'loading';
-      //   })
-      //   .addCase(incrementAsync.fulfilled, (state, action) => {
-      //     state.status = 'idle';
-      //     state.value += action.payload;
-      //   });
+export const bookSlice = createSlice({
+  name: 'booksStore',
+  initialState,
+  reducers: {
+    setBookList: (state, action) => {
+      state.books = action.payload.items
+      state.totalItems = action.payload.totalItems
     },
-  });
+    setSearchBook: (state, action) => {
+      state.searchBook = action.payload
+    }
+  },
+});
 
-  export const {} = bookSlice.actions;
+export const {setSearchBook, setBookList} = bookSlice.actions;
 
-  export default bookSlice.reducer;
+export default bookSlice.reducer;

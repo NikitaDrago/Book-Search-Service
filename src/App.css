@@ -20,3 +20,23 @@
     top: 0;
     right: 50px;
 }
+
+.book__thumbnail {
+    height: 350px;
+    width: 200px;
+}
+
+.book__card {
+    cursor: pointer;
+    transition: .3s;
+}
+
+.book__card:hover {
+    transform: scale(1.05);
+    transition: .3s;
+}
+
+.book__card:active {
+    transform: scale(1.1);
+    transition: .05s;
+}
