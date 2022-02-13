@@ -11,7 +11,7 @@ const Book = ({book}) => {
       }/>
       <Card.Body>
         <Card.Text className="text-decoration-underline">{
-          bookInfo.categories && bookInfo.categories[0]
+          bookInfo.categories && bookInfo?.categories[0]
         }</Card.Text>
         <Card.Title>{bookInfo.title}</Card.Title>
         <Card.Text>

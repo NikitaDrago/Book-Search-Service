@@ -2,7 +2,7 @@ import { Button, Col, Container, Form, FormControl, InputGroup, Row, Spinner } f
 import React, { useCallback, useState } from "react";
 import searchIcon from "./search.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setSearchBook } from "../../store/bookSlice";
+import { setFilter, setSearchBook, setSorting } from "../../store/bookSlice";
 import { searchBookSelector } from "../../store/selectors";
 
 const Header = ({setPopout}) => {
@@ -43,21 +43,29 @@ const Header = ({setPopout}) => {
               <Row className="justify-content-md-center mt">
                 <Col md="auto" className="fw-bolder fs-5">Categories</Col>
                 <Col md="auto">
-                  <Form.Select aria-label="Default select example">
-                    <option value="1">all</option>
-                    <option value="2">art</option>
-                    <option value="3">biography</option>
-                    <option value="4">computers</option>
-                    <option value="5">history</option>
-                    <option value="6">medical</option>
-                    <option value="7">poetry</option>
+                  <Form.Select aria-label="Default select example" className="form_cursor"
+                               onChange={
+                                 (e) => dispatch(setFilter(e.target.value))
+                               }
+                  >
+                    <option value="all">all</option>
+                    <option value="art">art</option>
+                    <option value="biography">biography</option>
+                    <option value="computers">computers</option>
+                    <option value="history">history</option>
+                    <option value="medical">medical</option>
+                    <option value="poetry">poetry</option>
                   </Form.Select>
                 </Col>
                 <Col md="auto" className="fw-bolder fs-5">Sorting by</Col>
                 <Col md="auto">
-                  <Form.Select aria-label="Default select example">
-                    <option value="1">relevance</option>
-                    <option value="2">newest</option>
+                  <Form.Select aria-label="Default select example" className="form_cursor"
+                               onChange={
+                                 (e) => dispatch(setSorting(e.target.value))
+                               }
+                  >
+                    <option value="relevance">relevance</option>
+                    <option value="newest">newest</option>
                   </Form.Select>
                 </Col>
               </Row>
