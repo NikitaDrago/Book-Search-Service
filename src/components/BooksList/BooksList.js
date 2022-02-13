@@ -10,10 +10,12 @@ const BooksList = ({onLoadMore}) => {
 
   return (
     <>
-      <h4 className="text-center mt-4">Found {totalItem} results</h4>
+      <h4 className="text-center pt-4">Found {totalItem} results</h4>
       <div className="books-wrapper mt-5">
         {
-          books && books.map((item) => <Book key={item.id} book={item}/>)
+          books && books.map((item) => {
+            return <Book key={`${item.etag}_${item.id}`} book={item}/>;
+          })
         }
       </div>
       <div className="d-grid mb-5">

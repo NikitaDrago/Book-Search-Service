@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {stat} from "fs";
 
 export interface BooksState {
   apiKey: string
@@ -19,7 +18,7 @@ export interface fetchBooksType {
 }
 
 const initialState: BooksState = {
-  apiKey: 'AIzaSyCU-r6vMR6xbtjFh62--mpRcDNYfALMZJ4',
+  apiKey: 'AIzaSyBgN8eAHqMJLf3ZsOmgk7Dq_TIxN2bbMB4',
   books: [],
   totalItems: 0,
   maxSearchBooks: 28,

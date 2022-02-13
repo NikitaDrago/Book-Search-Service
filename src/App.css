@@ -43,3 +43,9 @@
 .form_cursor {
     cursor: pointer;
 }
+
+.bookInfo {
+    grid-template-rows: 1fr;
+    grid-template-columns: 40% 60%;
+}
+

@@ -7,3 +7,4 @@ export const statusSelector = (state) => state.booksStore.status;
 export const searchBookSelector = (state) => state.booksStore.searchBook;
 export const sortingSelector = (state) => state.booksStore.sorting;
 export const filterSelector = (state) => state.booksStore.filter;
+export const popoutSelector = (state) => state.booksStore.popout;

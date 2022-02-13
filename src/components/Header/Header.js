@@ -4,15 +4,18 @@ import searchIcon from "./search.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setFilter, setSearchBook, setSorting } from "../../store/bookSlice";
 import { searchBookSelector } from "../../store/selectors";
+import { useHistory } from "react-router-dom";
 
 const Header = ({setPopout}) => {
   const [text, setText] = useState(null);
   const dispatch = useAppDispatch();
   const searchBook = useAppSelector(searchBookSelector);
+  const history = useHistory();
 
   const handleSearch = useCallback((e) => {
     e.preventDefault();
     if (text !== searchBook && text) {
+      history.push('/');
       setPopout(
         <div className="text-center mt-4">
           <Spinner animation="border"/>
@@ -20,7 +23,7 @@ const Header = ({setPopout}) => {
       );
       dispatch(setSearchBook(text));
     }
-  }, [text, searchBook]);
+  }, [text, searchBook, dispatch, setPopout]);
 
   return (
     <div className="app__header">

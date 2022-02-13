@@ -5,3 +5,10 @@ export const fetchBooks = async (searchBook, filter, apiKey, sorting, startIndex
   const response = await fetch(_url);
   return response.json();
 };
+
+export const fetchInfoAboutBook = async (bookID, apiKey) => {
+  const _url = `https://www.googleapis.com/books/v1/volumes/${bookID}?key=${apiKey}`;
+  const response = await fetch(_url);
+  return response.json();
+};
+

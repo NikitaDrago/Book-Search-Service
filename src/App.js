@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Header from "./components/Header/Header";
-import Books from "./components/BooksList/BooksList";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import {
   apiKeySelector, booksSelector, filterSelector,
@@ -12,6 +11,8 @@ import {
 } from "./store/selectors";
 import { fetchBooks } from "./utils/fetchBooks";
 import { setBookList, setMoreBooks, setSearchRange } from "./store/bookSlice";
+import BooksList from "./components/BooksList/BooksList";
+import Body from "./components/Body/Body";
 
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
 
   const handleData = useCallback(async (action, index) => {
     const subject = filter === 'all' ? '' : `+subject:${filter}`;
-    searchBook && fetchBooks(searchBook, subject, apiKey, sorting, index, maxSearchBooks)
+    await searchBook && fetchBooks(searchBook, subject, apiKey, sorting, index, maxSearchBooks)
       .then(value => {
           switch (action) {
             case 'newData':
@@ -42,30 +43,27 @@ const App = () => {
             default:
               break;
           }
-          setPopout(<>
-            <Books onLoadMore={handleLoadMore}/>
-          </>);
+          setPopout(<BooksList onLoadMore={handleLoadMore} setPopout={setPopout}/>);
         }
       );
   }, [searchBook, sorting, startIndex, filter]);
 
   useEffect(() => {
-    handleData('newData', 0);
-  }, [searchBook]);
+    startIndex === 0 && handleData('newData', 0);
+  }, [searchBook, sorting]);
 
   useEffect(() => {
-    handleData('LoadMore', startIndex);
+    startIndex !== 0 && handleData('LoadMore', startIndex);
   }, [sorting, startIndex]);
 
   useEffect(() => {
     handleData('newData', startIndex);
   }, [filter]);
 
-
   return (
     <>
       <Header setPopout={setPopout}/>
-      {popout}
+      <Body popout={popout}/>
     </>
   );
 };
