@@ -1,8 +1,8 @@
 import React from "react";
 import Book from "./Book";
-import { useAppSelector } from "../../store/hooks";
-import { booksSelector, totalItemsSelector } from "../../store/selectors";
-import { Button } from "react-bootstrap";
+import {useAppSelector} from "../../store/hooks";
+import {booksSelector, totalItemsSelector} from "../../store/selectors";
+import {Button} from "react-bootstrap";
 
 const BooksList = ({onLoadMore}) => {
   const books = useAppSelector(booksSelector);

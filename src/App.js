@@ -24,6 +24,7 @@ const App = () => {
   const searchBook = useAppSelector(searchBookSelector);
   const sorting = useAppSelector(sortingSelector);
   const filter = useAppSelector(filterSelector);
+  const books = useAppSelector(booksSelector);
 
   const handleLoadMore = () => {
     dispatch(setSearchRange(startIndex + 30));
@@ -46,7 +47,7 @@ const App = () => {
           setPopout(<BooksList onLoadMore={handleLoadMore} setPopout={setPopout}/>);
         }
       );
-  }, [searchBook, sorting, startIndex, filter]);
+  }, [searchBook, sorting, startIndex, filter, handleLoadMore, dispatch, apiKey, maxSearchBooks]);
 
   useEffect(() => {
     startIndex === 0 && handleData('newData', 0);
@@ -63,7 +64,7 @@ const App = () => {
   return (
     <>
       <Header setPopout={setPopout}/>
-      <Body popout={popout}/>
+      {books ? <Body popout={popout}/> : <h2 className="text-center mt-5">Not Found</h2>}
     </>
   );
 };

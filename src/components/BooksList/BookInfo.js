@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
-import { fetchInfoAboutBook } from "../../utils/fetchBooks";
-import { useAppSelector } from "../../store/hooks";
-import { apiKeySelector } from "../../store/selectors";
-import React, { useCallback, useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import React, {useCallback, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {fetchInfoAboutBook} from "../../utils/fetchBooks";
+import {useAppSelector} from "../../store/hooks";
+import {apiKeySelector} from "../../store/selectors";
+import {Spinner} from "react-bootstrap";
 
 const BookInfo = () => {
   const {id} = useParams();
@@ -31,7 +31,7 @@ const BookInfo = () => {
       popout !== null ? popout : bookInfo && <div className="bookInfo d-grid">
         <div className="bookInfo__card text-center p-5">
           <img alt="" className="bookInfo__img shadow-lg" src={
-            bookInfo.imageLinks && bookInfo.imageLinks.small && bookInfo.imageLinks.thumbnail
+            bookInfo.imageLinks && bookInfo.imageLinks.thumbnail && bookInfo.imageLinks.small
           }/>
         </div>
         <div className="p-5">

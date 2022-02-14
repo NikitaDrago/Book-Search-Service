@@ -1,9 +1,9 @@
-import { Card, Spinner } from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const Book = ({book}) => {
-  const bookInfo = book.volumeInfo;
+  const bookInfo = book.volumeInfo
   const history = useHistory();
 
   const handleBookClick = () => {

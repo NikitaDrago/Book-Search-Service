@@ -1,20 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 export interface BooksState {
-  apiKey: string
+  apiKey: string | undefined
   books: Object | undefined
-  totalItems: number
-  maxSearchBooks: number
-  startIndex: number
+  totalItems: number | undefined
+  maxSearchBooks: number | undefined
+  startIndex: number | undefined
   searchBook: string | null
   sorting: 'relevance' | 'newest'
   filter: 'all' | 'art' | 'biography' | 'computers' | 'history' | 'medical' | 'poetry'
-}
-
-export interface fetchBooksType {
-  searchBook: string
-  apiKey: string
-  maxSearchBooks: number
 }
 
 const initialState: BooksState = {
